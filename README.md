@@ -34,7 +34,7 @@ be talked to through ssh 10.0.0.0/16 traffic only for security purposes
 ## October 31, 2020 get rid of Ubuntu server on Amazon
 * Wasn't able to access git serer
 
-## October 31, 2020 created a new istance of Ubuntu on Amazon for my git server
+## October 31, 2020 created a new instance of Ubuntu on Amazon for my git server
 * Chose the name of the OS on the next bullet point for my OS as that was what my professor went with
 * Ubuntu Server 20.04 LTS (HVM), SSD Volume Type - ami-0dba2cb6798deb6d8 (64-bit x86) / ami-0ea142bd244023692 (64-bit Arm)
 * Chose t2.medium for instance type as that was a requirement for this project
@@ -44,7 +44,28 @@ be talked to through ssh 10.0.0.0/16 traffic only for security purposes
 * changed pet name to 3120-Instance-Demo
 
 ## October 31, 2020 change security protocols in VPC
-* allowed traffic to come from any network (0.0.0.0/0 and ::0/0)through SSH port 22 as traffic could be coming from any place in the world at this point in time.
+* allowed traffic to come from any network (0.0.0.0/0)through SSH port 22 as I am right now
+at someone else's house right now and I can't
+tie it this system to a specific public ip address.
+
 
 ## October 31,2020 associate public ip address with ubuntu instance
 * used the public ipv4 address from the previous ubuntu instance 34.236.62.38 and a private ipv4 address of 10.0.0.117
+
+## October 31, 2020 finish building git server
+* Had to do sudo apt install git to install the git server
+* Had to do sudo apt update to update the git server to get the latest packages
+* Had to do sudo apt upgrade to upgrade the git server to the latest packages of git
+* Had to do sudo apt autoclean to clean any remaining repositories that no longer exists
+* Had to do sudo apt autoremove to remove any old versions of packages
+* Had to do sudo reboot to get the git server to use the latest version of git
+* Had to do sudo apt install openssh-server to create a new openssh-server
+* Did sudo adduser git to create a new user called git with password: password
+* Everything else was default information for adduser git
+* Used cd ~ to switch to get to git@ip-10-0-0-117:~/.ssh
+* Used cd .ssh to switch to folder called .ssh
+* Found out .ssh does not exist, so had to use mkdir .ssh to make it
+* used cd .ssh to switch to folder .ssh
+* Used ls to see if authorized_keys exists, it does not
+* Used touch authorized_keys to create a file called authorized_keys
+* According to the lesson, we are supposed to have at least one public key in the authorized_keys file. The folowing steps are how I got the public key
