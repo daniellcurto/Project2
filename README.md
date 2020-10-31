@@ -1,6 +1,6 @@
 ## 10/30/2020 VPC creation
 * Created VPC via wizard using all default settings
-* Associated an ip address pool of 10.0.0.0/16 
+* Associated an ip address pool of 10.0.0.0/16
 VPC id: vpc-0828a62b9612fe901
 ![screenshot of VPC](/project2pictures/VPC_created.jpg)
 
