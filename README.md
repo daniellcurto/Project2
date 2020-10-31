@@ -30,9 +30,21 @@ be talked to through ssh 10.0.0.0/16 traffic only for security purposes
 * Put the public key for the git server on my ubuntu version on Windows under the file named demo.pem
 * Logged into git using 
 * Based off of instructions from instructor in the October 26, 2020 lecture
-* Had to do sudo apt install git to install the git server
-* Had to do sudo apt update to update the git server to get the latest packages
-* Had to do sudo apt upgrade to upgrade the git server to the latest packages of git
-* Had to do sudo apt autoclean to clean any remaining repositories that no longer exists
-* Had to do sudo apt autoremove to remove any old versions of packages
-* 
+
+## October 31, 2020 get rid of Ubuntu server on Amazon
+* Wasn't able to access git serer
+
+## October 31, 2020 created a new istance of Ubuntu on Amazon for my git server
+* Chose the name of the OS on the next bullet point for my OS as that was what my professor went with
+* Ubuntu Server 20.04 LTS (HVM), SSD Volume Type - ami-0dba2cb6798deb6d8 (64-bit x86) / ami-0ea142bd244023692 (64-bit Arm)
+* Chose t2.medium for instance type as that was a requirement for this project
+* Chose the 3120-VPC for network requirement
+* Port 22 is not open. Will have to change that in the VPC security protocol later
+* Paired the DESIGN_OF_INFORMATION_TECHNOLOGY.pem public key with this instance of ubuntu
+* changed pet name to 3120-Instance-Demo
+
+## October 31, 2020 change security protocols in VPC
+* allowed traffic to come from any network (0.0.0.0/0 and ::0/0)through SSH port 22 as traffic could be coming from any place in the world at this point in time.
+
+## October 31,2020 associate public ip address with ubuntu instance
+* used the public ipv4 address from the previous ubuntu instance 34.236.62.38 and a private ipv4 address of 10.0.0.117
