@@ -1,6 +1,6 @@
 ## 10/30/2020 VPC creation
-* Created VPC via wizard with default network rules
-
+* Created VPC via wizard using all default settings
+* Associated an ip address pool of 10.0.0.0/16 
 VPC id: vpc-0828a62b9612fe901
 ![screenshot of VPC](/project2pictures/VPC_created.jpg)
 
@@ -19,8 +19,9 @@ VPC id: vpc-0828a62b9612fe901
 ![screenshot of associated elastic ip address with server](/project2pictures/elastic_ip_to_server.jpg)
 
 ## 10/30/2020 Configured VPC, utilized Security Group to edit inbound ports for our services, traffic on 10.0.0.0/16
+*The company wanted VPC to be able to
+be talked to through ssh 10.0.0.0/16 traffic only for security purposes
 ![screenshot of allowing ssh through security group on VPC](/project2pictures/allow_ssh_vpc.jpg)
 
 ## October 30, 2020 Turned off the instance of OpenLDAP on Amazon for the night
 * Based off the fact that the company does not see the need for the OpenLDAP to be on all night
-
