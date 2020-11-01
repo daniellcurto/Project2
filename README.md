@@ -79,5 +79,10 @@ tie it this system to a specific public ip address.
 * I can now ssh straight into git using
     * ssh git@34.236.62.38
 
-* to copy the demo file from the professor, I have to use git init --bare 3120/demo1028.git
-* to clone the repository from the professor, I have to use git clone git@35.153.218.176:3120/demo1028.git
+* okay, it looks like now I am supposed to make a directory with my name in it and a file called demo.git in it. This can be accomplished by typing mkdir daniel and git init --bare daniel/demo.git
+* Now, I can clone it on my local system by saying git clone git@34.236.62.38:daniel/demo.git
+
+## Editing the /etc/hostname to make it say git-server
+* Make sure I am logged in as ubuntu
+* modified /etc/hosts by doing sudo nano /etc/hosts
+* then to see changes I did sudo reboot
