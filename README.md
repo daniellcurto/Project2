@@ -90,3 +90,24 @@ tie it this system to a specific public ip address.
 ## 10/31/2020 Editing the /etc/hosts on local ubuntu
 * Used sudo vim /etc/hosts
 * add 34.236.62.38  gitserv gitserv
+
+![Proof of Git Server](project2pictures/proof_of_git_server.jpg)
+
+## 10/31/2020 LDAP Configurations
+* Public IP address: 34.233.36.67
+
+## 10/31/2020 Create LDAP server using the following commands
+* sudo apt-get update
+* sudo apt-get upgrade
+* sudo apt install slapd ldap-utils
+* Administrator password: mcgee
+* Used sudo dpkg-reconfigure slapd to change my dit
+* Clicked no for first question
+* For DNS name we'll enter example.com
+* For Organization name type Wright State University
+* Type mcgee for Administrative password twice
+* When asked if you want the database to be removed when slapd is purged select No
+* When asked if you want to move the old database select Yes
+![proof LDAP server finished being made](project2pictures/ldap.jpg)
+
+![proof LDAP server is running](project2pictures/ldapservice.jpg)
