@@ -82,7 +82,11 @@ tie it this system to a specific public ip address.
 * okay, it looks like now I am supposed to make a directory with my name in it and a file called demo.git in it. This can be accomplished by typing mkdir daniel and git init --bare daniel/demo.git
 * Now, I can clone it on my local system by saying git clone git@34.236.62.38:daniel/demo.git
 
-## Editing the /etc/hostname to make it say git-server
+## 10/31/2020 Editing the /etc/hostname to make it say git-server
 * Make sure I am logged in as ubuntu
 * modified /etc/hosts by doing sudo nano /etc/hosts
 * then to see changes I did sudo reboot
+
+## 10/31/2020 Editing the /etc/hosts on local ubuntu
+* Used sudo vim /etc/hosts
+* add 34.236.62.38  gitserv gitserv
