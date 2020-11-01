@@ -62,6 +62,7 @@ tie it this system to a specific public ip address.
 * Had to do sudo apt install openssh-server to create a new openssh-server
 * Did sudo adduser git to create a new user called git with password: password
 * Everything else was default information for adduser git
+* Used su git with the git password to enter git
 * Used cd ~ to switch to get to git@ip-10-0-0-117:~/.ssh
 * Used cd .ssh to switch to folder called .ssh
 * Found out .ssh does not exist, so had to use mkdir .ssh to make it
@@ -69,3 +70,14 @@ tie it this system to a specific public ip address.
 * Used ls to see if authorized_keys exists, it does not
 * Used touch authorized_keys to create a file called authorized_keys
 * According to the lesson, we are supposed to have at least one public key in the authorized_keys file. The folowing steps are how I got the public key
+* On my local machine (daniel@DANGRAYLAPTOP), I typed in the following commands
+    * ssh-keygen -t rsa
+    * Set default for each option by typing in "Enter" each time
+    * After having to rebuild my git server after a fluck I di the following
+    * I did vim authorized-keys and pasted the new public key from my local ubuntu machine
+
+* I can now ssh straight into git using
+    * ssh git@34.236.62.38
+
+* to copy the demo file from the professor, I have to use git init --bare 3120/demo1028.git
+* to clone the repository from the professor, I have to use git clone git@35.153.218.176:3120/demo1028.git
