@@ -6,9 +6,7 @@ fi
 else
     for i in 'more new-username-file.txt'
     do
-    echo $i
-    adduser $i 
-    echo "welcomeToFHL" | passwd --stdin "$i"
+    echo '$i" WelcomeToFHL" | passwd --stdin "$i"' << new-username-and-password-file.txt
     done
 fi
 
