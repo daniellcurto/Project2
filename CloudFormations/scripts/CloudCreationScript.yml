@@ -36,13 +36,6 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: >-
   Cloud configuration file for CEG 3120.  This template will build two Ubuntu servers per project package needs.
 Parameters:
-  #No Windows Instances
-  #WS19InstanceType:
-    #Description: Windows Server instance type
-    #Type: String
-    #Default: t2.small
-    #AllowedValues:
-      #- t2.small
   UbuntuInstanceType:
     Description: Ubuntu Server instance type
     Type: String
@@ -64,31 +57,8 @@ Parameters:
     ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
 Mappings:
   AWSInstanceType2Arch:  # Supported architectures (x64bit only)
-    # only care about micro
-    #t2.small:
-      #Arch: HVM64
-    #t2.small:
-      #Arch: HVM64
     t2.micro:
       Arch: HVM64
-  # All Windows info
-  #AWSRegionWS19: # AMI for Win Server 2019 in each supported region 
-  #  us-east-1:   # N. Virginia
-  #    PV64: NOT_SUPPORTED
-  #    HVM64: ami-0d42fc1154bb95f55
-  #    HVMG2: NOT_SUPPORTED
-  #  us-east-2:   # Ohio
-  #    PV64: NOT_SUPPORTED
-  #    HVM64: NOT_SUPPORTED
-  #    HVMG2: NOT_SUPPORTED
-  #  us-west-1:   # N. California
-  #    PV64: NOT_SUPPORTED
-  #    HVM64: NOT_SUPPORTED
-  #    HVMG2: NOT_SUPPORTED
-  #  us-west-2:   # Oregon
-  #    PV64: NOT_SUPPORTED
-  #    HVM64: NOT_SUPPORTED
-  #    HVMG2: NOT_SUPPORTED
   AWSRegionUbuntu: # AMI for Ubuntu server in each supported region 
     us-east-1:   # N. Virginia
       PV64: NOT_SUPPORTED
@@ -99,14 +69,6 @@ Mappings:
       PV64: NOT_SUPPORTED
       HVM64: NOT_SUPPORTED
       HVMG2: NOT_SUPPORTED
-  #  us-west-1:   # N. California
-  #    PV64: NOT_SUPPORTED
-  #    HVM64: NOT_SUPPORTED
-  #    HVMG2: NOT_SUPPORTED
-  #  us-west-2:   # Oregon
-  #    PV64: NOT_SUPPORTED
-  #    HVM64: NOT_SUPPORTED
-  #    HVMG2: NOT_SUPPORTED
 Resources:
   VPC:
     Type: 'AWS::EC2::VPC'
@@ -172,14 +134,6 @@ Resources:
     Properties:
       Domain: vpc
       InstanceId: !Ref Ubuntu2Instance
-  #WS19IPAddress:
-  #  Type: 'AWS::EC2::EIP'
-  #  DependsOn: AttachGateway
-  #  Properties:
-  #    Domain: vpc
-  #    InstanceId: !Ref WS19Instance
-  # TODO: Setup the security groups needed by our machines
-  # SSH, LDAP, HTTP, HTTPS
   LinuxSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
@@ -247,7 +201,7 @@ Resources:
               git \
               wget \
               python3-dev \
-              ldap-utils && \
+              pwgen \
             echo "OMG this worked" >> /home/ubuntu/hello.txt && \
             echo "Hello World" >> /etc/skel/default.txt && \
             reboot
