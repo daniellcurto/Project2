@@ -9,9 +9,9 @@ Search
 
 Sign in
 Sign up
-pattonsgirl
+daniellcurto
 /
-Fall2020-CEG3120
+Project2
 203
 Code
 Issues
@@ -24,9 +24,9 @@ Insights
 GitHub is where the world builds software
 Millions of developers and companies build, ship, and maintain their software on GitHub — the largest and most advanced development platform in the world.
 
-Fall2020-CEG3120/Projects/Project2/sample-config-file.yml
-@pattonsgirl
-pattonsgirl requirement note
+Project2/CloudCreationScript.yml
+@daniellcurto
+daniellcurto requirement note
 Latest commit 76b3f48 6 hours ago
  History
  1 contributor
@@ -202,8 +202,8 @@ Resources:
               wget \
               python3-dev \
               pwgen \
-            echo "OMG this worked" >> /home/ubuntu/hello.txt && \
-            echo "Hello World" >> /etc/skel/default.txt && \
+            echo "Welcome to the company" >> /home/ubuntu/welcome.txt && \
+            echo "Welcome to the company" >> /etc/skel/welcome.txt && \
             reboot
   Ubuntu2Instance:
     Type: 'AWS::EC2::Instance'
