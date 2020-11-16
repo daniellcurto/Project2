@@ -1,38 +1,4 @@
-Skip to content
-Why GitHub? 
-Team
-Enterprise
-Explore 
-Marketplace
-Pricing 
-Search
-
-Sign in
-Sign up
-daniellcurto
-/
-Project2
-203
-Code
-Issues
-1
-Pull requests
-Actions
-Projects
-Security
-Insights
-GitHub is where the world builds software
-Millions of developers and companies build, ship, and maintain their software on GitHub — the largest and most advanced development platform in the world.
-
-Project2/CloudCreationScript.yml
-@daniellcurto
-daniellcurto requirement note
-Latest commit 76b3f48 6 hours ago
- History
- 1 contributor
-317 lines (316 sloc)  9.36 KB
-  
-AWSTemplateFormatVersion: 2010-09-09
+ AWSTemplateFormatVersion: 2010-09-09
 Description: >-
   Cloud configuration file for CEG 3120.  This template will build two Ubuntu servers per project package needs.
 Parameters:
