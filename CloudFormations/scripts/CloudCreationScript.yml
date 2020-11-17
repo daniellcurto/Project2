@@ -1,4 +1,4 @@
- AWSTemplateFormatVersion: 2010-09-09
+AWSTemplateFormatVersion: 2010-09-09
 Description: >-
   Cloud configuration file for CEG 3120.  This template will build two Ubuntu servers per project package needs.
 Parameters:
@@ -167,9 +167,9 @@ Resources:
               git \
               wget \
               python3-dev \
-              pwgen \
-            echo "Welcome to the company" >> /home/ubuntu/welcome.txt && \
-            echo "Welcome to the company" >> /etc/skel/welcome.txt && \
+              ldap-utils && \
+            echo "OMG this worked" >> /home/ubuntu/hello.txt && \
+            echo "Hello World" >> /etc/skel/default.txt && \
             reboot
   Ubuntu2Instance:
     Type: 'AWS::EC2::Instance'
@@ -211,16 +211,3 @@ Resources:
               python3-dev && \
               pwgen \
             reboot
-
-© 2020 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
