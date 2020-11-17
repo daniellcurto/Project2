@@ -8,11 +8,13 @@ else
     do
     echo $i
     echo $i |pwgen -y 15| passwd --stdin "$i" >> new-username-and-password-file${date}.txt
-    echo; echo "User $username's password changed!"
+    echo; echo "User $USER's password changed!"
     sudo groupadd -f devops  #the f checks to see if devops exists before creating it
-    vim welcome.txt
-    "Welcome to the company"
-    cp /home/ubuntu/welcome.txt /home/$i
+    sudo chmod g+rwx /home 
+    touch welcome.txt
+    
+    echo "Welcome to the company $USER" >> welcome.txt
+    sudo cp welcome.txt /home/$USER/
     done
 fi
 
