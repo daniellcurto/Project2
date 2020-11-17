@@ -167,9 +167,8 @@ Resources:
               git \
               wget \
               python3-dev \
-              ldap-utils && \
-            echo "OMG this worked" >> /home/ubuntu/hello.txt && \
-            echo "Hello World" >> /etc/skel/default.txt && \
+            echo "Welcome back, Mr. Curto" >> /home/ubuntu/hello.txt && \
+            echo "Welcome to your new Ubuntu system" >> /etc/skel/hello.txt && \
             reboot
   Ubuntu2Instance:
     Type: 'AWS::EC2::Instance'
