@@ -217,17 +217,8 @@ Resources:
               haproxy \
             
             # settings for HAProxy
-
-            frontend ICAP
-            bind 0.0.0.0:1344
-            mode tcp
-            default_backend icap_pool
-            backend icap_pool
-            balance <balancing scheme, roundrobin is recommended>
-            mode tcp
-            server <name of ICAP server 1> <IP address of cluster node>:<ICAP server port> check
+          echo "frontend ICAP", "bind 0.0.0.0:1344", "mode tcp", "default_backend icap_pool", "backend icap_pool", "balance roundrobin", "mode tcp", "server <name of ICAP server 1> <IP address of cluster node>:<ICAP server port> check
             server <name of ICAP server 2> <IP address of cluster node>:<ICAP server port> check
-            server <name of ICAP server 3> <IP address of cluster node>:<ICAP server port> check
             service pahroxy restart
             echo "OMG this worked" >> /home/ubuntu/hello.txt && \
             echo "Hello World" >> /etc/skel/default.txt && \
