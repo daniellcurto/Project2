@@ -174,7 +174,7 @@ Resources:
           FromPort: '-1'
           ToPort: '-1'
           CidrIp: 10.0.0.0/16
-  HAProxy:
+  Ubuntu1Instance:
     Type: 'AWS::EC2::Instance'
     DependsOn: AttachGateway
     Properties:
@@ -217,13 +217,12 @@ Resources:
               haproxy \
             
             # settings for HAProxy
-          echo "frontend ICAP", "bind 0.0.0.0:1344", "mode tcp", "default_backend icap_pool", "backend icap_pool", "balance roundrobin", "mode tcp", "server <name of ICAP server 1> <IP address of cluster node>:<ICAP server port> check
-            server <name of ICAP server 2> <IP address of cluster node>:<ICAP server port> check
-            service pahroxy restart
+          echo '"frontend http_front", "stats uri /haproxy?stats","default_backend http_back","backend http_back","balance roundrobin","server Ubuntu2Instance 10.0.0.20:80 check", "server Ubuntu3Instance 10.0.0.25:80 check"' > /etc/udev/rules.d/10-local.rules
             echo "OMG this worked" >> /home/ubuntu/hello.txt && \
-            echo "Hello World" >> /etc/skel/default.txt && \
+            echo "Hello World" >> /etc/skel/default.txt && \ 
             
             reboot
+            
   Ubuntu2Instance:
     Type: 'AWS::EC2::Instance'
     DependsOn: AttachGateway
@@ -249,6 +248,47 @@ Resources:
           DeviceIndex: '0'
           DeleteOnTermination: 'true'
           SubnetId: !Ref Subnet
+          PrivateIpAddress: 10.0.0.20
+      UserData:
+        Fn::Base64:
+          !Sub |
+            #!/bin/bash -xe
+            apt-get update && \
+            apt-get install -y \
+              python \
+              nmap \
+              vim \
+              git \
+              wget \
+              python3-dev && \
+              apache2 \
+            reboot
+
+Ubuntu3Instance:
+    Type: 'AWS::EC2::Instance'
+    DependsOn: AttachGateway
+    Properties:
+      ImageId: !FindInMap 
+        - AWSRegionUbuntu
+        - !Ref 'AWS::Region'
+        - !FindInMap 
+          - AWSInstanceType3Arch
+          - !Ref UbuntuInstanceType
+          - Arch
+      InstanceType: !Ref UbuntuInstanceType
+      KeyName: !Ref KeyName
+      Tags:
+        - Key: Application
+          Value: !Ref 'AWS::StackId'
+        - Key: Name
+          Value: CEG 3400 Ubuntu 3
+      NetworkInterfaces:
+        - GroupSet:
+            - !Ref LinuxSecurityGroup
+          AssociatePublicIpAddress: 'true'
+          DeviceIndex: '0'
+          DeleteOnTermination: 'true'
+          SubnetId: !Ref Subnet
           PrivateIpAddress: 10.0.0.25
       UserData:
         Fn::Base64:
@@ -262,4 +302,5 @@ Resources:
               git \
               wget \
               python3-dev && \
+              apache2 \
             reboot
