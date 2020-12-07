@@ -250,6 +250,7 @@ Resources:
           SubnetId: !Ref Subnet
           PrivateIpAddress: 10.0.0.20
       UserData:
+      /index-serv1.html
         Fn::Base64:
           !Sub |
             #!/bin/bash -xe
