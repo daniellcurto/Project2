@@ -37,24 +37,6 @@ Mappings:
       #Arch: HVM64
     t2.micro:
       Arch: HVM64
-  # All Windows info
-  #AWSRegionWS19: # AMI for Win Server 2019 in each supported region 
-  #  us-east-1:   # N. Virginia
-  #    PV64: NOT_SUPPORTED
-  #    HVM64: ami-0d42fc1154bb95f55
-  #    HVMG2: NOT_SUPPORTED
-  #  us-east-2:   # Ohio
-  #    PV64: NOT_SUPPORTED
-  #    HVM64: NOT_SUPPORTED
-  #    HVMG2: NOT_SUPPORTED
-  #  us-west-1:   # N. California
-  #    PV64: NOT_SUPPORTED
-  #    HVM64: NOT_SUPPORTED
-  #    HVMG2: NOT_SUPPORTED
-  #  us-west-2:   # Oregon
-  #    PV64: NOT_SUPPORTED
-  #    HVM64: NOT_SUPPORTED
-  #    HVMG2: NOT_SUPPORTED
   AWSRegionUbuntu: # AMI for Ubuntu server in each supported region 
     us-east-1:   # N. Virginia
       PV64: NOT_SUPPORTED
@@ -65,14 +47,6 @@ Mappings:
       PV64: NOT_SUPPORTED
       HVM64: NOT_SUPPORTED
       HVMG2: NOT_SUPPORTED
-  #  us-west-1:   # N. California
-  #    PV64: NOT_SUPPORTED
-  #    HVM64: NOT_SUPPORTED
-  #    HVMG2: NOT_SUPPORTED
-  #  us-west-2:   # Oregon
-  #    PV64: NOT_SUPPORTED
-  #    HVM64: NOT_SUPPORTED
-  #    HVMG2: NOT_SUPPORTED
 Resources:
   VPC:
     Type: 'AWS::EC2::VPC'
@@ -132,12 +106,12 @@ Resources:
     Properties:
       Domain: vpc
       InstanceId: !Ref Ubuntu1Instance
-  Ubuntu2IPAddress:
-    Type: 'AWS::EC2::EIP'
-    DependsOn: AttachGateway
-    Properties:
-      Domain: vpc
-      InstanceId: !Ref Ubuntu2Instance
+  #Ubuntu2IPAddress:
+  #  Type: 'AWS::EC2::EIP'
+  #  DependsOn: AttachGateway
+  #  Properties:
+  #    Domain: vpc
+  #    InstanceId: !Ref Ubuntu2Instance
   #WS19IPAddress:
   #  Type: 'AWS::EC2::EIP'
   #  DependsOn: AttachGateway
@@ -202,7 +176,7 @@ Resources:
           PrivateIpAddress: 10.0.0.20
       UserData:
         Fn::Base64:
-          !Sub |
+          !Sub /
             #!/bin/bash -xe
             apt-get update && \
             # reference web solution here to get a silent install working
@@ -244,9 +218,9 @@ Resources:
       NetworkInterfaces:
         - GroupSet:
             - !Ref LinuxSecurityGroup
-          AssociatePublicIpAddress: 'true'
+          #AssociatePublicIpAddress: 'true'
           DeviceIndex: '0'
-          DeleteOnTermination: 'true'
+          #DeleteOnTermination: 'true'
           SubnetId: !Ref Subnet
           PrivateIpAddress: 10.0.0.20
       UserData:
@@ -286,9 +260,9 @@ Ubuntu3Instance:
       NetworkInterfaces:
         - GroupSet:
             - !Ref LinuxSecurityGroup
-          AssociatePublicIpAddress: 'true'
-          DeviceIndex: '0'
-          DeleteOnTermination: 'true'
+          #AssociatePublicIpAddress: 'true'
+          DeviceIndex: '0' 
+          #DeleteOnTermination: 'true'
           SubnetId: !Ref Subnet
           PrivateIpAddress: 10.0.0.25
       UserData:
