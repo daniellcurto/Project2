@@ -217,7 +217,7 @@ Resources:
               haproxy \
             
             # settings for HAProxy
-          echo '"frontend http_front", "'\t'bind *:80", "'\t'stats uri /haproxy?stats", "'\t'default_backend http_back","backend http_back","'\t'balance roundrobin","'\t'server Ubuntu2Instance 10.0.0.20:80 check", "'\t'server Ubuntu3Instance 10.0.0.25:80 check"' > /etc/udev/rules.d/10-local.rules
+          echo '"frontend http_front", "'\t'bind *:80", "'\t'stats uri /haproxy?stats", "'\t'default_backend http_back","backend http_back","'\t'balance roundrobin","'\t'server Ubuntu2Instance 10.0.0.20:80 check", "'\t'server Ubuntu3Instance 10.0.0.25:80 check", "backend blog_back", "'\t'server "' > /etc/udev/rules.d/10-local.rules
             echo "OMG this worked" >> /home/ubuntu/hello.txt && \
             echo "Hello World" >> /etc/skel/default.txt && \ 
             
