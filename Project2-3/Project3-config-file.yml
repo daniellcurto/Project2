@@ -176,7 +176,7 @@ Resources:
           PrivateIpAddress: 10.0.0.20
       UserData:
         Fn::Base64:
-          !Sub /
+          !Sub |
             #!/bin/bash -xe
             apt-get update && \
             # reference web solution here to get a silent install working
