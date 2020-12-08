@@ -225,7 +225,7 @@ Resources:
               apache2 && \
             reboot
 
-Ubuntu3Instance:
+  Ubuntu3Instance:
     Type: 'AWS::EC2::Instance'
     DependsOn: AttachGateway
     Properties:
@@ -233,7 +233,7 @@ Ubuntu3Instance:
         - AWSRegionUbuntu
         - !Ref 'AWS::Region'
         - !FindInMap 
-          - AWSInstanceType3Arch
+          - AWSInstanceType2Arch
           - !Ref UbuntuInstanceType
           - Arch
       InstanceType: !Ref UbuntuInstanceType
