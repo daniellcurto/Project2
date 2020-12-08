@@ -2,13 +2,6 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: >-
   Cloud configuration file for CEG 3120.  This template will build two Ubuntu servers per project package needs.
 Parameters:
-  #No Windows Instances
-  #WS19InstanceType:
-    #Description: Windows Server instance type
-    #Type: String
-    #Default: t2.small
-    #AllowedValues:
-      #- t2.small
   UbuntuInstanceType:
     Description: Ubuntu Server instance type
     Type: String
@@ -30,11 +23,6 @@ Parameters:
     ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
 Mappings:
   AWSInstanceType2Arch:  # Supported architectures (x64bit only)
-    # only care about micro
-    #t2.small:
-      #Arch: HVM64
-    #t2.small:
-      #Arch: HVM64
     t2.micro:
       Arch: HVM64
   AWSRegionUbuntu: # AMI for Ubuntu server in each supported region 
@@ -194,7 +182,6 @@ Resources:
             echo '"frontend http_front", "'\t'bind *:80", "'\t'stats uri /haproxy?stats", "'\t'default_backend http_back","backend http_back","'\t'balance roundrobin","'\t'server Ubuntu2Instance 10.0.0.20:80 check", "'\t'server Ubuntu3Instance 10.0.0.25:80 check", "backend blog_back", "'\t'server Ubuntu2Instance 10.0.0.20:80 check", "'\t'server Ubuntu3Instance 10.0.0.25:80"' > /etc/haproxy/haproxy.cfg && \
             echo "OMG this worked" >> /home/ubuntu/hello.txt && \
             echo "Hello World" >> /etc/skel/default.txt && \ 
-            
             reboot
             
   Ubuntu2Instance:
@@ -224,7 +211,6 @@ Resources:
           SubnetId: !Ref Subnet
           PrivateIpAddress: 10.0.0.20
       UserData:
-      index-serv1.html
         Fn::Base64:
           !Sub |
             #!/bin/bash -xe
@@ -277,5 +263,5 @@ Ubuntu3Instance:
               git \
               wget \
               python3-dev && \
-              apache2 \
+              apache2 && \
             reboot
