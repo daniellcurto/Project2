@@ -115,6 +115,8 @@ Resources:
       GroupDescription: Enable SSH access via port 22 and open ports 1025 through 2048.
       SecurityGroupIngress:
         - IpProtocol: tcp
+          FromPort: '80'
+          ToPort: '80'
           FromPort: '22'
           ToPort: '22'
           # May be wise to go back to top where SSHLocation "variable" was made
@@ -136,6 +138,11 @@ Resources:
           FromPort: '-1'
           ToPort: '-1'
           CidrIp: 10.0.0.0/16
+          FromPort: '22'
+          ToPort:'22'
+          FromPort: '80'
+          ToPort: '80'
+          
   Ubuntu1Instance:
     Type: 'AWS::EC2::Instance'
     DependsOn: AttachGateway
