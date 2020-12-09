@@ -139,7 +139,7 @@ Resources:
           ToPort: '-1'
           CidrIp: 10.0.0.0/16
           FromPort: '22'
-          ToPort:'22'
+          ToPort: '22'
           FromPort: '80'
           ToPort: '80'
           
