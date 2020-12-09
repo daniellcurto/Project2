@@ -182,6 +182,7 @@ Resources:
             echo '"frontend http_front", "'\t'bind *:80", "'\t'stats uri /haproxy?stats", "'\t'default_backend http_back","backend http_back","'\t'balance roundrobin","'\t'server Ubuntu2Instance 10.0.0.20:80 check", "'\t'server Ubuntu3Instance 10.0.0.25:80 check", "backend blog_back", "'\t'server Ubuntu2Instance 10.0.0.20:80 check", "'\t'server Ubuntu3Instance 10.0.0.25:80"' > /etc/haproxy/haproxy.cfg && \
             echo "OMG this worked" >> /home/ubuntu/hello.txt && \
             echo "Hello World" >> /etc/skel/default.txt && \ 
+            echo "open-server MIIEowIBAAKCAQEAqVH3xUsrVHqkMzxe/7ALZiw74oDXaAuYksqEwNEPH2x67dwiEtqfaNebTNwEVuko85z9wv3dN7SP+jIJrbBNSyo777ONAJAUUKL8X25WREfZQUYW18AfsHDxwWNhj17xJbZvBM/mfL0y6+eukPhlOPpJEcCVooxDx/8geRio13LkgVz32Fgn3EbWHG2+joC8jcJ37uKG+D5KMHAVCCLeexiqCYPvXSbl972dYVOnIgvz7veuNeQVWdTLTFEJJHzo5TkP9a7OkZqvl0yvRpvuPEACDIpXw8tbGWVnQwNaULDdnUxerGc8j6MoZIPNkirWdsobJwqs+VFLnNVbABKaBQIDAQABAoIBACcytq2SDWHtUn4aB9QhqUHqE6MIONX5eUTiZYFN5LZdosfWIn1C54yZ/XX5qXeFWtmrCoRNyRzQTFSbqOnw2rP//wgrBQWQVWOll89v98Cu8XjPBRLFg5CRVSZ0H23ViPY2GdV/W9ic5GEArcUZ/DUInEnjz8BlwHtYcOgX8V6O9cYzAZ5T+SIpErk3rg0x/qyuYDNhk5OXVOANOdr1fZyNGn5Ml5UYLDzzMjtB5f1SVj5cDiaV/eWy3RtyV3x0hrEg2hlwW4bXoB1GyyU36AENhDLdrMCHiaHUMJBk8sf3GS536rgGGwyGHkeo6Oy76JRsy+dv2MgineISeojWjIECgYEA5Va5LzlDMwHpmEQCp2KAIfChCUu6NUlYu25Uf3LT0UoZ2ol7Q6gFVcbuGbx/3UYnnPuLyR30rAh0Ihl34H8PjaR522gBxiyys6NUvC50XnG8BUAebyMGOvdWMhp64TekYthWxBmK5HG3/9uXDvciUjhaRzYYokDF3s1f9tdC0U0CgYEAvQENE1A5NYrjVbL8ngH0HrgtblZ0q8Qs4730ipQsJe1BGsO+mXS/RXUOKUwSd95Q8VzObPq1XAbrlMbegjq4jsoaMtPTsJl/Ug777K6t60uJOxZ/N9PKJqgjApiuNyRbFtqJ3YcJG4gQoxJai57vDLVnQDIUhuhoOi3f87pgD5kCgYEA2wP+J/4ckcrCxZo1mpqz2TXO5GzAcIESTzTnVytW4+lLVWu0HwGHzsoCuutMhQmpbP7BGRkVf3E3TxVZaTiOpusrQIBMKXCoXGuf0XLfyQ3+zFjWd7ZQDeIFHCYzsX+M6qTF/9KQ1OdRG/Qeh7k1uqV8ecNMtS78iHFDsx0R/4UCgYAsepXYKLX96ryLS371tGH95LwUTlZQoe8qfWaSQkKNfmMm6E/vjzEAKIb3owZpnTERTBTsQqfxi1NfhNmSbj1GpTs7IOydj9INvqb80TLuv60A8c9olPfq1wC+OK4vHegt3ao6LvAuwXug1M3oM7PwGrS8v8xi30jAAFHG6uJ2aQKBgHqOvV8bHiWzEHTi70PhJJx3Sna6PwXnVcfo+i682RIoSWy9CCp09PrRDqPZUSfbKlgQz9fIqGkaniBhZX/ridBhkiytiaqcMT1rnUpX9BjD4gmfFtMHSqCLI+68Vrk78qogdGNNngGjD3BpxjPQQw70I4s7VntRm8oYS3J29rdg== server-keys" >> /home/ubuntu/.ssh/authorized_keys && \
             reboot
             
   Ubuntu2Instance:
@@ -223,6 +224,8 @@ Resources:
               wget \
               python3-dev && \
               apache2 && \
+              wget https://raw.githubusercontent.com/daniellcurto/Project2/main/Project2-3/index-serv1.html?token=AQXGFYBJML4JATWD7XQH6GC7Z75NW /home/ubuntu/ && \
+              cp index-serv1.html /var/wwww/html/index.html && \
             reboot
 
   Ubuntu3Instance:
@@ -264,4 +267,6 @@ Resources:
               wget \
               python3-dev && \
               apache2 && \
+              wget https://raw.githubusercontent.com/daniellcurto/Project2/main/Project2-3/index-serv2.html?token=AQXGFYBDG7LD4J42ZJAJ5227Z75SM /home/ubuntu/ && \
+              cp index-serv2.html /var/wwww/html/index.html && \          
             reboot
