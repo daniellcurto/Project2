@@ -185,11 +185,12 @@ Resources:
               ldap-utils && \
               haproxy && \
             
-            # settings for HAProxy
-            echo '"frontend http_front", "'\t'bind *:80", "'\t'stats uri /haproxy?stats", "'\t'default_backend http_back","backend http_back","'\t'balance roundrobin","'\t'server Ubuntu2Instance 10.0.0.20:80 check", "'\t'server Ubuntu3Instance 10.0.0.25:80 check", "backend blog_back", "'\t'server Ubuntu2Instance 10.0.0.20:80 check", "'\t'server Ubuntu3Instance 10.0.0.25:80"' > /etc/haproxy/haproxy.cfg && \
-            echo "OMG this worked" >> /home/ubuntu/hello.txt && \
-            echo "Hello World" >> /etc/skel/default.txt && \ 
-            echo "open-server MIIEowIBAAKCAQEAgEX0taT8+pLsq2KEA5nqyGMF07JsyMzgr2KkNy5wZFhZx6vQt+mjaxcwNXB1Q1uWchzwtu1PsW3ZLxdO4W4DnnCZ9qOKvW9cETJYh6s1eQgnHw1qqBF5ewz9BSXtJmtTCxi+MecJCyMCPB4+UAI7hE6aEGaEhk+AnuM71hxM5Q8Zlwa6k/rgHAedyKcNlFsG3hxJxNiN+jdQrLxmi5SLtjFvND6uXXwWF5hQ00Ljf+iKrMicAGdcv7LECWi2lDLHiTPUotyCY4fASA7jJMCe24h6eXA2U4DGnfvofeCjKHUU52C/C1Ebo7OQu1+Jx+dNB+Z8+q11srXA+MUe87dR9QIDAQABAoIBAH61m+861XMoY4VAwatVBamAt6bQ38jTKTfWtuSTiQ52f+lPfdPOhVEqDMMdHZi2Bj0e/WGVtl1MZ3evDIp+xDBkhpIuJsTOFiIem3kY1K+EMDDqbesrp9a3k9DcEBEdf2C8xlRBJpvLr093iJI8QlKF2oZM3qhWLHXHfboZJpQ1GVlT1hfJ4FokLZGub4Vl63zx/wuYEmS/wX5QHrfYxioNXLIZdJBy3hXVnwP+fN39Tatgz3OdoBkpHo2zt41IliKHB6agmho0yLhFIgFGb+lxW02CJS2YkEMaREXMijCD+gRoryeawlXV4opiq2phDSROqLQbNT+5D3LbWV5lbUECgYEAwuu4PUTvgbpz/ti4SNfcVdlMNsFcutZoy8EphkQohF4qre7rcJHtA/tRM/ONY71qs4eh1bYg5KcNWeqr4Nipj72ZI6dBIkNxrOPO2xSldWmu7zopBsdJzlQWDSsnlM0IRnfkjQqLQJS+suqWpr/z8RTmHVL6zBlPr0ZiZYhFItkCgYEAqHfc8fMCgqCLX4RhgTAZnQ22VMbj01ed3whnIODSt24YBFTnp8P8Bzeeotm5Vt6NIytz7/3XIVFa+FlFBP3Zy40SmpgpIUVZWCeK8Uy9uwO9CaRo/Dh6NAJkboFz6NNgjbVVOPQmmK1wq1s5N2HXGFLXUq597d1DTijxfjsy/n0CgYEAvWaQyrAuTg8f4TUytE1T4vNXtCjlcwMeJ0aVk8qs2BosPIBYtDSHawQMHn/9Fjqa8MHNRj1H7wZH2eRGiR/eezaPFG7Twnhof8eIW6bPM6yyd/A6p0SEegGIv9j8CAHGlbqwEUB6mREvz+hU5MjGP66//yR/YE0D+dtZhzEHhNkCgYAObmYg275FTldiEUcA+AvZpkkOLhNqEUFWz7N134xtZiLsjBFkD6fRPnR6Ysg7psjUUG6YCliZZAy05YDCErTLeQQ09f/f977VjF2cmgROtt1ErC7KHFRrjCDqTnCNaz4EJZptTIzZ21GhfCkEk38HeGE1lfj3nVKcqWk2dP/DSQKBgGQy4iNnVcPS6elMncDzubiMFx8a4wwQc0Z+UMBMUpYL3sTz7i++U8b/QnzcNw/Hxn95qrliH382IIDPh+PKfr7BVJlP2YsMKd6EScXfA7l6sIwzxg269NlY7smJwFFJnNemWO3QImqVdid8FjaPM0rxqeHlIbI4dEccvZGVerb0== server-keys" >> /home/ubuntu/.ssh/authorized_keys && \
+              # settings for HAProxy
+              echo '"frontend http_front", "'\t'bind *:80", "'\t'stats uri /haproxy?stats", "'\t'default_backend http_back","backend http_back","'\t'balance roundrobin","'\t'server Ubuntu2Instance 10.0.0.20:80 check", "'\t'server Ubuntu3Instance 10.0.0.25:80 check", "backend blog_back", "'\t'server Ubuntu2Instance 10.0.0.20:80 check", "'\t'server Ubuntu3Instance 10.0.0.25:80"' > /etc/haproxy/haproxy.cfg && \
+              echo "OMG this worked" >> /home/ubuntu/hello.txt && \
+              echo "Hello World" >> /etc/skel/default.txt && \
+              ssh-copy-id ubuntu@10.0.0.25
+              ssh-copy-id ubuntu@10.0.0.30       
             reboot
             
   Ubuntu2Instance:
@@ -217,7 +218,7 @@ Resources:
           DeviceIndex: '0'
           #DeleteOnTermination: 'true'
           SubnetId: !Ref Subnet
-          PrivateIpAddress: 10.0.0.20
+          PrivateIpAddress: 10.0.0.25
       UserData:
         Fn::Base64:
           !Sub |
@@ -231,6 +232,12 @@ Resources:
               wget \
               python3-dev && \
               apache2 && \
+
+              # settings for ssh
+              mkdir -p $HOME/.ssh && \
+              chmod 0700 $HOME/.ssh && \ 
+              ssh-keygen && \
+
               wget https://raw.githubusercontent.com/daniellcurto/Project2/main/Project2-3/index-serv1.html?token=AQXGFYBJML4JATWD7XQH6GC7Z75NW /home/ubuntu/ && \
               cp index-serv1.html /var/wwww/html/index.html && \
             reboot
@@ -260,7 +267,7 @@ Resources:
           DeviceIndex: '0' 
           #DeleteOnTermination: 'true'
           SubnetId: !Ref Subnet
-          PrivateIpAddress: 10.0.0.25
+          PrivateIpAddress: 10.0.0.30
       UserData:
         Fn::Base64:
           !Sub |
@@ -274,6 +281,12 @@ Resources:
               wget \
               python3-dev && \
               apache2 && \
+
+              # settings for ssh
+              mkdir -p $HOME/.ssh && \
+              chmod 0700 $HOME/.ssh && \ 
+              ssh-keygen && \
+
               wget https://raw.githubusercontent.com/daniellcurto/Project2/main/Project2-3/index-serv2.html?token=AQXGFYBDG7LD4J42ZJAJ5227Z75SM /home/ubuntu/ && \
               cp index-serv2.html /var/wwww/html/index.html && \          
             reboot
