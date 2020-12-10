@@ -193,6 +193,10 @@ Resources:
               -yes && \
               ssh-copy-id ubuntu@10.0.0.30 && \
               -yes && \
+
+              # now we will be updating the websites on both of our webservers at once
+              ssh ubuntu@10.0.0.25
+              
             reboot
             
   Ubuntu2Instance:
