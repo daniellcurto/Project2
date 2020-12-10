@@ -10,6 +10,7 @@ else
     echo $i |pwgen -y 15| passwd --stdin "$i" >> new-username-and-password-file${date}.txt
     echo; echo "User $USER's password changed!"
     sudo groupadd -f devops  #the f checks to see if devops exists before creating it
+    usermod -a -G devops $USER
     sudo chmod g+rwx /home 
     touch welcome.txt
     
