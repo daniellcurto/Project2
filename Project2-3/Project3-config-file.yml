@@ -238,11 +238,13 @@ Resources:
               wget \
               python3-dev && \
               apache2 && \
-
+              
               # settings for ssh
               mkdir -p $HOME/.ssh && \
               chmod 0700 $HOME/.ssh && \ 
               ssh-keygen && \
+              -config && \
+              echo -e "\n\n" && \
 
               wget https://raw.githubusercontent.com/daniellcurto/Project2/main/Project2-3/index-serv1.html /home/ubuntu/ && \
               cp index-serv1.html /var/www/html/index.html && \
@@ -293,6 +295,9 @@ Resources:
               mkdir -p $HOME/.ssh && \
               chmod 0700 $HOME/.ssh && \ 
               ssh-keygen && \
+              -config && \
+              echo -e "\n\n" && \
+
 
               wget https://raw.githubusercontent.com/daniellcurto/Project2/main/Project2-3/index-serv2.html /home/ubuntu/ && \
               cp /home/ubuntu/index-serv2.html /var/wwww/html/index.html && \          
