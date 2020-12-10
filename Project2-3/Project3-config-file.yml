@@ -196,7 +196,7 @@ Resources:
 
               # now we will be updating the websites on both of our webservers at once
               ssh ubuntu@10.0.0.25
-              
+
             reboot
             
   Ubuntu2Instance:
@@ -245,7 +245,8 @@ Resources:
               ssh-keygen && \
 
               wget https://raw.githubusercontent.com/daniellcurto/Project2/main/Project2-3/index-serv1.html /home/ubuntu/ && \
-              cp index-serv1.html /var/wwww/html/index.html && \
+              cp index-serv1.html /var/www/html/index.html && \
+              chown ubuntu /var/www/html/
             reboot
 
   Ubuntu3Instance:
