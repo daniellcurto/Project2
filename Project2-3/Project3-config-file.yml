@@ -186,7 +186,7 @@ Resources:
               haproxy && \
             
               # settings for HAProxy
-              echo '"frontend http_front", "'\t'bind *:80", "'\t'stats uri /haproxy?stats", "'\t'default_backend http_back","backend http_back","'\t'balance roundrobin","'\t'server Ubuntu2Instance 10.0.0.20:80 check", "'\t'server Ubuntu3Instance 10.0.0.25:80 check", "backend blog_back", "'\t'server Ubuntu2Instance 10.0.0.20:80 check", "'\t'server Ubuntu3Instance 10.0.0.25:80"' > /etc/haproxy/haproxy.cfg && \
+               wget https://raw.githubusercontent.com/daniellcurto/Project2/main/Project2-3/haproxy.cfg > /etc/haproxy/haproxy.cfg && \
               echo "OMG this worked" >> /home/ubuntu/hello.txt && \
               echo "Hello World" >> /etc/skel/default.txt && \
               ssh-copy-id ubuntu@10.0.0.25 && \
@@ -240,7 +240,7 @@ Resources:
               chmod 0700 $HOME/.ssh && \ 
               ssh-keygen && \
 
-              wget https://raw.githubusercontent.com/daniellcurto/Project2/main/Project2-3/index-serv1.html?token=AQXGFYBJML4JATWD7XQH6GC7Z75NW /home/ubuntu/ && \
+              wget https://raw.githubusercontent.com/daniellcurto/Project2/main/Project2-3/index-serv1.html /home/ubuntu/ && \
               cp index-serv1.html /var/wwww/html/index.html && \
             reboot
 
@@ -289,6 +289,6 @@ Resources:
               chmod 0700 $HOME/.ssh && \ 
               ssh-keygen && \
 
-              wget https://raw.githubusercontent.com/daniellcurto/Project2/main/Project2-3/index-serv2.html?token=AQXGFYBDG7LD4J42ZJAJ5227Z75SM /home/ubuntu/ && \
-              cp index-serv2.html /var/wwww/html/index.html && \          
+              wget https://raw.githubusercontent.com/daniellcurto/Project2/main/Project2-3/index-serv2.html /home/ubuntu/ && \
+              cp /home/ubuntu/index-serv2.html /var/wwww/html/index.html && \          
             reboot
