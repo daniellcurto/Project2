@@ -1,0 +1,8 @@
+#!/bin/bash
+
+ssh ubuntu@
+git init --bare ~/project.git
+chmod +x post-receive
+git remote add scripts/project ubuntu@:project.git
+              
+git push production master
