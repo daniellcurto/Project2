@@ -1,0 +1,1 @@
+For the scipt that will be updating the website, you will need to take the public ip address and plug it into the fie called update_for_website.
