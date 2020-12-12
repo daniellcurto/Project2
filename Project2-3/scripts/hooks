@@ -3,8 +3,6 @@ TARGET="/var/www/html/"
 GIT_DIR="/home/ubuntu/mastersite"
 BRANCH="master"
 
-echo "Firing up post-receive from 10.0.0.20 - index-serv1"
-echo "Firing up post-receive from 10.0.0.25 - index-serv2"
 while read oldrev newrev ref
 do
         # only checking out the master (or whatever branch you would like to deploy)
