@@ -112,13 +112,16 @@ Resources:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
       VpcId: !Ref VPC
-      GroupDescription: Enable SSH access via port 22 and open ports 1025 through 2048.
+      GroupDescription: Enable SSH access via port 22, port 80, and open ports 1025 through 2048.
       SecurityGroupIngress:
         - IpProtocol: tcp
-          FromPort: '80'
-          ToPort: '80'
           FromPort: '22'
           ToPort: '22'
+          CidrIp: !Sub 0.0.0.0/0
+        -IpProtocol: tcp
+          FromPort: '80'
+          ToPort: '80'
+          CidrIp: !Sub 0.0.0.0/0
           # May be wise to go back to top where SSHLocation "variable" was made
           CidrIp: !Ref SSHLocation
         - IpProtocol: tcp
@@ -138,8 +141,11 @@ Resources:
           FromPort: '-1'
           ToPort: '-1'
           CidrIp: 10.0.0.0/16
+        - IpProtocol: tcp
           FromPort: '22'
           ToPort: '22'
+           CidrIp: 10.0.0.0/16
+        - IpProtocol: tcp
           FromPort: '80'
           ToPort: '80'
           
