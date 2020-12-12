@@ -117,41 +117,30 @@ Resources:
         - IpProtocol: tcp
           FromPort: '22'
           ToPort: '22'
-          CidrIp: !Sub 0.0.0.0/0
-        -IpProtocol: tcp
-          FromPort: '80'
-          ToPort: '80'
-          CidrIp: !Sub 0.0.0.0/0
-          # May be wise to go back to top where SSHLocation "variable" was made
-          CidrIp: !Ref SSHLocation
+          # May be wise to go back to top where SSHLocation "variable" was made 
         - IpProtocol: tcp
           FromPort: '22'
           ToPort: '22'
-          # TODO: only leave ones we need.  What submet is this?
-          CidrIp: 130.108.0.0/16  # WSU CIDR
+          CidrIp: 0.0.0.0/0 # world access
         - IpProtocol: tcp
-          FromPort: '1025'
-          ToPort: '2048'
-          CidrIp: !Ref SSHLocation
+          FromPort: '80'
+          ToPort: '80'
+          CidrIp: 0.0.0.0/0 # world access
         - IpProtocol: tcp
-          FromPort: '1025'
-          ToPort: '2048'
-          CidrIp: 130.108.0.0/16  # WSU CIDR
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: 10.0.0.0/24 # internal network
+        - IpProtocol: tcp
+          FromPort: '80'
+          ToPort: '80'
+          CidrIp: 10.0.0.0/24 # internal network
         - IpProtocol: -1
           FromPort: '-1'
           ToPort: '-1'
           CidrIp: 10.0.0.0/16
-        - IpProtocol: tcp
-          FromPort: '22'
-          ToPort: '22'
-           CidrIp: 10.0.0.0/16
-        - IpProtocol: tcp
-          FromPort: '80'
-          ToPort: '80'
           
   Ubuntu1Instance:
     Type: 'AWS::EC2::Instance'
-    DependsOn: AttachGateway
     Properties:
       ImageId: !FindInMap 
         - AWSRegionUbuntu
