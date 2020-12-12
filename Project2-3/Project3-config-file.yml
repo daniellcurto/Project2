@@ -190,9 +190,10 @@ Resources:
               -yes && \
 
               # now we will be updating the websites on both of our webservers at once
-              ssh ubuntu@10.0.0.25 && \
+              ssh ubuntu@myhaproxy.com && \
               git init --bare ~/project.git && \
               chmod +x post-receive && \
+              git remote add scripts/project ubuntu@myhaproxy.com:project.git
               
               git push production master && \
             reboot
