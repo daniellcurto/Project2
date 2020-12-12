@@ -191,7 +191,12 @@ Resources:
 
               # now we will be updating the websites on both of our webservers at once
               ssh ubuntu@10.0.0.25
-
+              mkdir ~/deploy-folder
+              git init --bare ~/project.git
+              chmod +x post-receive
+              cp ~/
+              git 
+              ssh ubuntu@10.0.0.30
             reboot
             
   Ubuntu2Instance:
